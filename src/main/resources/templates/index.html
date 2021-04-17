@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<!--<link rel="stylesheet"  th:href="@{css/bootstrap.min.css}">-->
-<link rel="stylesheet" href="../static/css/bootstrap.min.css">
+<link rel="stylesheet" th:href="@{/static/bootstrap5/css/bootstrap.css}">
+<script type="text/javascript" th:src="@{/static/bootstrap5/js/bootstrap.js}"></script>
+
 <body>
+
+
     <h1 th:text="${userName}"></h1>
+    <h1 th:text="@{/static/bootstrap/css/bootstrap.css}"></h1>
+
     <button class="btn btn-sm btn-primary" type="submit">안녕하세요</button>
+
 </body>
 </html>
 
