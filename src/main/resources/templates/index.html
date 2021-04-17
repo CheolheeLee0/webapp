@@ -1,17 +1,22 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorator="layouts/layout"
+>
+<!-- index.html 고유 CSS 추가 -->
+<th:block layout:fragment="css"></th:block>
 
-<link rel="stylesheet" th:href="@{/static/bootstrap5/css/bootstrap.css}">
-<script type="text/javascript" th:src="@{/static/bootstrap5/js/bootstrap.js}"></script>
+<!-- index.html 고유 스크립트 추가 -->
+<th:block layout:fragment="script"></th:block>
 
-<body>
-
+<div layout:fragment="content">
+    <div style="border: 1px solid red">
+        index.html 입니다. 즉 컨텐츠 영역
+    </div>
 
     <h1 th:text="${userName}"></h1>
-    <h1 th:text="@{/static/bootstrap/css/bootstrap.css}"></h1>
+    <button class="btn btn-sm btn-primary"
+</div>
 
-    <button class="btn btn-sm btn-primary" type="submit">안녕하세요</button>
-
-</body>
 </html>
-
