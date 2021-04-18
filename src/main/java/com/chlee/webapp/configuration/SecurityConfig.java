@@ -44,8 +44,9 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/h2-console/**").permitAll()
                 .and() // 로그인 설정
                 .csrf()
-                .ignoringAntMatchers("/h2-console/**")
-                .and()
+                .disable()
+//                .ignoringAntMatchers("/h2-console/**")
+//                .and()
                 .headers()
                 .frameOptions().sameOrigin();
         // // h2-console 허용
@@ -75,4 +76,6 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(memberService).passwordEncoder(passwordEncoder());
     }
+
+
 }
