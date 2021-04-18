@@ -95,7 +95,7 @@
         // jackson 적용 시 성공, 미적용시 실패
         function dataSendPostFormSerialize() {
             var data = $("#application").serialize();
-
+            data = decodeURIComponent(data);
             console.log(data);
 
             $.ajax({
