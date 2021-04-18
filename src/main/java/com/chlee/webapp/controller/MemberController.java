@@ -13,7 +13,7 @@ public class MemberController {
     private MemberService memberService;
 
     // 메인 페이지
-    @GetMapping("/")
+    @GetMapping("/member")
     public String index() {
         return "view/member/index";
     }
