@@ -1,6 +1,6 @@
-package com.chlee.webapp.repository;
+package com.chlee.webapp.domain.repository;
 
-import com.chlee.webapp.model.Customer;
+import com.chlee.webapp.domain.entity.Customer;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

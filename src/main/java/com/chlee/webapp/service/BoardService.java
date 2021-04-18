@@ -1,8 +1,8 @@
 package com.chlee.webapp.service;
 
-import com.chlee.webapp.model.BoardEntity;
-import com.chlee.webapp.model.board.BoardDto;
-import com.chlee.webapp.repository.BoardRepository;
+import com.chlee.webapp.domain.entity.BoardEntity;
+import com.chlee.webapp.domain.dto.BoardDto;
+import com.chlee.webapp.domain.repository.BoardRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

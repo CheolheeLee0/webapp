@@ -1,7 +1,7 @@
 package com.chlee.webapp;
 
-import com.chlee.webapp.model.Customer;
-import com.chlee.webapp.repository.CustomerRepository;
+import com.chlee.webapp.domain.entity.Customer;
+import com.chlee.webapp.domain.repository.CustomerRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;

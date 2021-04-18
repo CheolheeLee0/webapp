@@ -1,4 +1,4 @@
-package com.chlee.webapp.model;
+package com.chlee.webapp.domain.entity;
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
