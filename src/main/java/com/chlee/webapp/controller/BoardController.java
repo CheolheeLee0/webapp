@@ -15,14 +15,17 @@ public class BoardController {
     private BoardService boardService;
 
     /* 게시글 목록 */
-    @GetMapping("/board1")
-    public String list(Model model) {
-        List<BoardDto> boardList = boardService.getBoardlist();
+    @GetMapping("/board/list")
+    public String list(Model model, @RequestParam(value="page", defaultValue = "1") Integer pageNum) {
+        List<BoardDto> boardList = boardService.getBoardlist(pageNum);
+        Integer[] pageList = boardService.getPageList(pageNum);
 
         model.addAttribute("boardList", boardList);
-        return "view/board/list.html";
+        model.addAttribute("pageList", pageList);
 
+        return "view/board/list.html";
     }
+
     @GetMapping("/post")
     public String write() {
 
@@ -30,10 +33,10 @@ public class BoardController {
     }
 
     @PostMapping("/post")
-    public String write(BoardDto boardDto) {
+    public String writePost(BoardDto boardDto) {
         boardService.savePost(boardDto);
 
-        return "redirect:/";
+        return "redirect:/board/list";
     }
     @GetMapping("/post/{no}")
     public String detail(@PathVariable("no") Long no, Model model) {
@@ -55,13 +58,22 @@ public class BoardController {
     public String update(BoardDto boardDTO) {
         boardService.savePost(boardDTO);
 
-        return "redirect:/";
+        return "redirect:/board/list";
     }
 
     @DeleteMapping("/post/{no}")
     public String delete(@PathVariable("no") Long no) {
         boardService.deletePost(no);
 
-        return "redirect:/";
+        return "redirect:/board/list";
+    }
+    // 검색
+    @GetMapping("/board/search")
+    public String search(@RequestParam(value="keyword") String keyword, Model model) {
+        List<BoardDto> boardDtoList = boardService.searchPosts(keyword);
+
+        model.addAttribute("boardList", boardDtoList);
+
+        return "view/board/list.html";
     }
 }
