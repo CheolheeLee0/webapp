@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class MainController {
 
-    @RequestMapping("/")
+    @RequestMapping("/main")
     public String index(ModelMap map) {
         map.addAttribute("userName", "cheolheeLee");
         return "index";
