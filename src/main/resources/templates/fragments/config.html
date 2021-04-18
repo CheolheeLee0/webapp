@@ -1,20 +1,22 @@
-<!DOCTYPE html>
-<html
-        xmlns:th="http://www.thymeleaf.org"
-        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
->
-<head th:fragment="configFragment">
-    <meta charset="UTF-8" />
-    <!-- 공통으로 쓰이는 css파일을넣는다.-->
-    <link rel="stylesheet" th:href="@{/static/bootstrap5/css/bootstrap.css}">
+<html lagn="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
-    <!-- 컨텐츠페이지의 CSS 영역이 들어감 -->
+<!--configFragment 선언-->
+<th:block th:fragment="configFragment">
+
+
+    <!-- 이 영역에 공통으로 사용할 css, js library를 선언한다. -->
+    <link rel="stylesheet" th:href="@{/static/bootstrap5/css/bootstrap.css}" >
+
+    <script th:src="@{/static/bootstrap5/js/bootstrap.min.js}"></script>
+    <script th:src="@{/static/js/jquery-3.6.0.min.js}"></script>
+
+    <!-- Content Page의 CSS fragment 삽입 -->
     <th:block layout:fragment="css"></th:block>
 
-    <!-- 공통으로 쓰이는 css파일을넣는다.-->
-    <script type="text/javascript" th:src="@{/static/bootstrap5/js/bootstrap.js}"></script>
-    <script type="text/javascript" th:src="@{/static/js/jquery-3.6.0.min.js}"></script>
-    <!-- 컨텐츠페이지의 스크립트 영역이 들어감 -->
+    <!-- Content Page의 script fragment 삽입 -->
     <th:block layout:fragment="script"></th:block>
-</head>
+
+</th:block>
 </html>
