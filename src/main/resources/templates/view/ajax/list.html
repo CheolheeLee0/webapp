@@ -10,48 +10,138 @@
 <!-- index.html 고유 스크립트 추가 -->
 <th:block layout:fragment="script">
     <script>
-        function dataSend() {
+        // jackson 적용 시 성공, 미적용시 실패
+        function dataSendGet() {
             var messageDTO = {
-                food: "chicken",
-                price:"80",
-                maker:"cheolheeLee"
+                food: $("#inputFood").val(),
+                price:$("#inputPrice").val(),
+                maker:$("#inputMaker").val()
             };
+
+            var data = messageDTO;
+
+            console.log(data);
+
+            $.ajax({
+                type:"GET",
+                url: "/chlee/food/get",
+                data: data, // json
+		        success : function(data, status, xhr) {
+		            console.log(data);
+                    $("#resultFood").text(data.food);
+                    $("#resultPrice").text(data.price);
+                    $("#resultMaker").text(data.maker);
+		        }, error: function(jqXHR, textStatus, errorThrown) {
+
+		        }
+            });
+        }
+
+        // @RequestBody 필요
+        function dataSendPostStringify() {
+            var messageDTO = {
+                food: $("#inputFood").val(),
+                price:$("#inputPrice").val(),
+                maker:$("#inputMaker").val()
+            };
+
             var data = JSON.stringify(messageDTO);
 
             console.log(data);
 
             $.ajax({
                 type:"POST",
-                url: "/chlee/food",
-                data: data,
+                url: "/chlee/food/stringify",
+                data: data, // string
                 dataType: "json",
 		        contentType:"application/json;charset=UTF-8",
 		        success : function(data, status, xhr) {
 		            console.log(data);
-                    $("#resultFood").replaceWith(data.food);
-                    $("#resultPrice").replaceWith(data.price);
-                    $("#resultMaker").replaceWith(data.maker);
+                    $("#resultFood").text(data.food);
+                    $("#resultPrice").text(data.price);
+                    $("#resultMaker").text(data.maker);
+		        }, error: function(jqXHR, textStatus, errorThrown) {
+
+		        }
+            });
+        }
+
+        // jackson 적용 시 성공, 미적용시 실패
+         function dataSendPostJson() {
+            var messageDTO = {
+                food: $("#inputFood").val(),
+                price:$("#inputPrice").val(),
+                maker:$("#inputMaker").val()
+            };
+
+            var data = messageDTO;
+
+            console.log(data);
+
+            $.ajax({
+                type:"POST",
+                url: "/chlee/food/json",
+                data: data,
+		        success : function(data, status, xhr) {
+		            console.log(data);
+                    $("#resultFood").text(data.food);
+                    $("#resultPrice").text(data.price);
+                    $("#resultMaker").text(data.maker);
+		        }, error: function(jqXHR, textStatus, errorThrown) {
+
+		        }
+            });
+        }
+        // jackson 적용 시 성공, 미적용시 실패
+        function dataSendPostFormSerialize() {
+            var data = $("#application").serialize();
+
+            console.log(data);
+
+            $.ajax({
+                type:"POST",
+                url: "/chlee/food/formserialize",
+                data: data,
+		        success : function(data, status, xhr) {
+		            console.log(data);
+                    $("#resultFood").text(data.food);
+                    $("#resultPrice").text(data.price);
+                    $("#resultMaker").text(data.maker);
 		        }, error: function(jqXHR, textStatus, errorThrown) {
 
 		        }
             });
         }
     </script>
-
 </th:block>
-
 <div layout:fragment="content">
     <div style="border: 1px solid red">
         this is view/ajax/list.html
     </div>
 
-    <input id="food" type="text" value=""/>
+    <div id="resultFood">미정</div><br>
+    <div id="resultPrice">미정</div><br>
+    <div id="resultMaker">미정</div><br>
 
-    <h1 id="resultFood">미정</h1>
-    <h1 id="resultPrice">미정</h1>
-    <h1 id="resultMaker">미정</h1>
+    <form id="application">
+        <input id="inputFood" type="text" name="food" /><br>
+        <input id="inputPrice" type="text" name="price" /><br>
+        <input id="inputMaker" type="text" name="maker" /><br>
+    </form>
 
-    <button class="btn btn-sm btn-primary" onclick="dataSend()">ajax 요청</button>
+
+
+    <button class="btn btn-sm btn-primary" onclick="dataSendGet()">dataSendGet()</button>
+    <br>
+    <br>
+    <button class="btn btn-sm btn-primary" onclick="dataSendPostStringify()">dataSendPostStringify() : stringify</button>
+    <br>
+    <br>
+    <button class="btn btn-sm btn-primary" onclick="dataSendPostJson()">dataSendPostJson() : no stringify</button>
+    <br>
+    <br>
+    <button class="btn btn-sm btn-primary" onclick="dataSendPostFormSerialize()">dataSendPostFormSerialize() : form serialize Post</button>
+
 </div>
 
 </html>

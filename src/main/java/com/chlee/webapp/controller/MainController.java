@@ -26,13 +26,5 @@ public class MainController {
         return "view/ajax/list";
     }
 
-    @PostMapping("/chlee/food")
-    public @ResponseBody
-    Map<String,Object> getFood(@RequestBody MessageDto messageDto) {
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("food", messageDto.getFood());
-        map.put("price", messageDto.getPrice());
-        map.put("maker", messageDto.getMaker());
-        return map;
-    }
+
 }
