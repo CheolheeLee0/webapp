@@ -44,7 +44,8 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/h2-console/**").permitAll()
                 .and() // 로그인 설정
                 .csrf()
-                .disable()
+                .ignoringAntMatchers("/h2-console/**")
+                .and()
                 .headers()
                 .frameOptions().sameOrigin();
         // // h2-console 허용
