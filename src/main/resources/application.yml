@@ -16,3 +16,10 @@ spring:
       force: true
   mvc:
     static-path-pattern: /static/**
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: false
+  freemarker:
+    cache: false
