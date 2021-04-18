@@ -1,6 +1,6 @@
-package com.chlee.webapp.controller.board;
+package com.chlee.webapp.controller;
 
-import com.chlee.webapp.model.board.BoardDto;
+import com.chlee.webapp.domain.dto.BoardDto;
 import com.chlee.webapp.service.BoardService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -15,7 +15,7 @@ public class BoardController {
     private BoardService boardService;
 
     /* 게시글 목록 */
-    @GetMapping("/")
+    @GetMapping("/board1")
     public String list(Model model) {
         List<BoardDto> boardList = boardService.getBoardlist();
 

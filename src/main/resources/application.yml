@@ -12,17 +12,20 @@ spring:
   h2:
     console:
       enable: true
-#  http:
-#    encoding:
-#      charset: UTF-8
-#      enabled: true
-#      force: true
-#  mvc:
-#    static-path-pattern: /static/**
-#  devtools:
-#    livereload:
-#      enabled: true
-#    restart:
-#      enabled: false
-#  freemarker:
-#    cache: false
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  mvc:
+    static-path-pattern: /static/**
+    hiddenmethod:
+      filter:
+        enabled: true
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: false
+  freemarker:
+    cache: false
