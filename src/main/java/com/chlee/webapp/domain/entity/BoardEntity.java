@@ -1,4 +1,4 @@
-package com.chlee.webapp.model;
+package com.chlee.webapp.domain.entity;
 
 import lombok.AccessLevel;
 import lombok.Builder;

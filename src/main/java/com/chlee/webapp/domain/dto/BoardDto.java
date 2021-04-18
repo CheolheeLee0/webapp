@@ -1,6 +1,6 @@
-package com.chlee.webapp.model.board;
+package com.chlee.webapp.domain.dto;
 
-import com.chlee.webapp.model.BoardEntity;
+import com.chlee.webapp.domain.entity.BoardEntity;
 import lombok.*;
 
 import java.time.LocalDateTime;

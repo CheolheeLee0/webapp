@@ -1,6 +1,6 @@
-package com.chlee.webapp.repository;
+package com.chlee.webapp.domain.repository;
 
-import com.chlee.webapp.model.BoardEntity;
+import com.chlee.webapp.domain.entity.BoardEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface BoardRepository extends JpaRepository<BoardEntity, Long> {

@@ -1,4 +1,4 @@
-package com.chlee.webapp.model;
+package com.chlee.webapp.domain.entity;
 
 
 import javax.persistence.*;
