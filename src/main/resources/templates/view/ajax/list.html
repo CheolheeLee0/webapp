@@ -5,11 +5,37 @@
         layout:decorator="layouts/layout"
 >
 <!-- index.html 고유 CSS 추가 -->
-<th:block layout:fragment="css"></th:block>
+<th:block layout:fragment="css">
+    <style>
+        #wrap {
+            width:100vw;
+            height:100vh;
+            padding:200px;
+        }
+    </style>
+</th:block>
 
 <!-- index.html 고유 스크립트 추가 -->
 <th:block layout:fragment="script">
     <script>
+        let tbody;
+        let jsonData;
+        function renderTable(data) {
+            jsonData = data;
+            for (let i = 0; i < data.length; i++) {
+                let tr = document.createElement('tr');
+                let keys = Object.keys(data[i]);
+                for (let j = 0; j < keys.length; j++) {
+                    let td = document.createElement('td');
+                    td.innerText = data[i][keys[j]];
+                    tr.appendChild(td);
+                    console.log(`tr : ${tr}, td : ${td}, keys[j] : ${keys[j]}, data[keys[j]] : ${data[keys[j]]} .` );
+                }
+                tbody.appendChild(tr);
+            }
+            console.log("success"); 
+
+        }
         // jackson 적용 시 성공, 미적용시 실패
         function dataSendGet() {
             var messageDTO = {
@@ -24,13 +50,10 @@
 
             $.ajax({
                 type:"GET",
-                url: "/chlee/food/get",
-                data: data, // json
+                url: "/chlee/customer",
+                // data: data, // json
 		        success : function(data, status, xhr) {
-		            console.log(data);
-                    $("#resultFood").text(data.food);
-                    $("#resultPrice").text(data.price);
-                    $("#resultMaker").text(data.maker);
+                    renderTable(data);                    
 		        }, error: function(jqXHR, textStatus, errorThrown) {
 
 		        }
@@ -112,36 +135,52 @@
 		        }
             });
         }
+        document.addEventListener('DOMContentLoaded', (e) => {
+            tbody = document.getElementById('renderTable').getElementsByTagName('tbody')[0];
+        });
     </script>
 </th:block>
 <div layout:fragment="content">
-    <div style="border: 1px solid red">
-        this is view/ajax/list.html
+
+
+    <div id="wrap">
+        <div style="border: 1px solid red">
+            this is view/ajax/list.html
+        </div>
+    
+        <div id="resultFood">미정</div><br>
+        <div id="resultPrice">미정</div><br>
+        <div id="resultMaker">미정</div><br>
+    
+        <form id="application">
+            <input id="inputFood" type="text" name="food" /><br>
+            <input id="inputPrice" type="text" name="price" /><br>
+            <input id="inputMaker" type="text" name="maker" /><br>
+        </form>
+    
+        <button class="btn btn-sm btn-primary" onclick="dataSendGet()">dataSendGet()</button>
+        <br>
+        <br>
+        <button class="btn btn-sm btn-primary" onclick="dataSendPostStringify()">dataSendPostStringify() : stringify</button>
+        <br>
+        <br>
+        <button class="btn btn-sm btn-primary" onclick="dataSendPostJson()">dataSendPostJson() : no stringify</button>
+        <br>
+        <br>
+        <button class="btn btn-sm btn-primary" onclick="dataSendPostFormSerialize()">dataSendPostFormSerialize() : form serialize Post</button>
+
+        <table id="renderTable">
+            <thead>
+                <th>id</th>
+                <th>firstName</th>
+                <th>lastName</th>
+                <th>parentName</th>
+                <th>star</th>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
     </div>
-
-    <div id="resultFood">미정</div><br>
-    <div id="resultPrice">미정</div><br>
-    <div id="resultMaker">미정</div><br>
-
-    <form id="application">
-        <input id="inputFood" type="text" name="food" /><br>
-        <input id="inputPrice" type="text" name="price" /><br>
-        <input id="inputMaker" type="text" name="maker" /><br>
-    </form>
-
-
-
-    <button class="btn btn-sm btn-primary" onclick="dataSendGet()">dataSendGet()</button>
-    <br>
-    <br>
-    <button class="btn btn-sm btn-primary" onclick="dataSendPostStringify()">dataSendPostStringify() : stringify</button>
-    <br>
-    <br>
-    <button class="btn btn-sm btn-primary" onclick="dataSendPostJson()">dataSendPostJson() : no stringify</button>
-    <br>
-    <br>
-    <button class="btn btn-sm btn-primary" onclick="dataSendPostFormSerialize()">dataSendPostFormSerialize() : form serialize Post</button>
-
 </div>
-
 </html>

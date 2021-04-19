@@ -1,5 +1,6 @@
 package com.chlee.webapp;
 
+import com.chlee.webapp.domain.dto.MessageDto;
 import com.chlee.webapp.domain.entity.Customer;
 import com.chlee.webapp.domain.repository.CustomerRepository;
 import org.slf4j.Logger;
@@ -22,38 +23,14 @@ public class WebappApplication {
     @Bean
     public CommandLineRunner demo(CustomerRepository repository) {
         return (args) -> {
-            // save a few customers
-            repository.save(new Customer("Jack", "Bauer"));
-            repository.save(new Customer("Chloe", "O'Brian"));
-            repository.save(new Customer("Kim", "Bauer"));
-            repository.save(new Customer("David", "Palmer"));
-            repository.save(new Customer("Michelle", "Dessler"));
-
-            // fetch all customers
-            log.info("Customers found with findAll():");
-            log.info("-------------------------------");
-            for (Customer customer : repository.findAll()) {
-                log.info(customer.toString());
-            }
-            log.info("");
-
-            // fetch an individual customer by ID
-            Customer customer = repository.findById(1L);
-            log.info("Customer found with findById(1L):");
-            log.info("--------------------------------");
-            log.info(customer.toString());
-            log.info("");
-
-            // fetch customers by last name
-            log.info("Customer found with findByLastName('Bauer'):");
-            log.info("--------------------------------------------");
-            repository.findByLastName("Bauer").forEach(bauer -> {
-                log.info(bauer.toString());
-            });
-            // for (Customer bauer : repository.findByLastName("Bauer")) {
-            //  log.info(bauer.toString());
-            // }
-            log.info("");
+            repository.save(new Customer("ㅣㅑ이", "철희","ㅁㄴㅇㅁㄴㅇㅁㄴ","ㅁㄴㅇㅈㄷㅂ"));
+            repository.save(new Customer("이ㅊ퍼", "asd","ㅁㄴㅇㅁㄴㅇㅁㄴ","ㅁㄴㅇㅈㄷㅂ"));
+            repository.save(new Customer("이", "철희","ㅁㄴㅇㅁㄴㅇㅁㄴ","ㅁㄴㅇㅈㄷㅂ"));
+            repository.save(new Customer("이ㄴㅇㄴㅇ", "철asdasd희","ㅁㄴㅇㅁㄴㅇㅁㄴ","ㅁㄴㅇㅈㄷㅂ"));
+            repository.save(new Customer("이", "철asd희","ㅁㄴㅇㅁㄴㅇㅁㄴ","ㅁㄴㅇㅈㄷㅂ"));
+            repository.save(new Customer("퓨ㅜ퓨이", "철희","ㅁㄴㅇㅁㄴㅇㅁㄴ","ㅁㄴㅇㅈㄷㅂ"));
+            repository.save(new Customer("이ㅁㄴㅇ", "철sd희","ㅁㄴㅇㅁㄴㅇㅁㄴ","ㅁㄴㅇㅈㄷㅂ"));
+            repository.save(new Customer("이ㅁㄴㅇ", "철ㅁㄴㅇ희","ㅁㄴㅇㅁㄴㅇㅁㄴ","ㅁㄴㅇㅈㄷㅂ"));
         };
     }
 }
