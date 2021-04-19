@@ -19,7 +19,7 @@ public class UserController {
 
     @GetMapping("/user/signup")
     public String dispSignup(UserDto userDto) {
-        return "view/user/signup";
+        return "view/auth/signup";
     }
 
     @PostMapping("/user/signup")
@@ -33,16 +33,14 @@ public class UserController {
             for (String key : validatorResult.keySet()) {
                 model.addAttribute(key, validatorResult.get(key));
             }
-
-            return "view/user/signup";
+            return "view/auth/signup";
         }
-
         userService.signUp(userDto);
         return "redirect:/user/login";
     }
 
     @GetMapping("/user/login")
     public String displogin() {
-        return "view/user/login";
+        return "view/auth/login";
     }
 }
